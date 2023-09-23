@@ -342,18 +342,11 @@ contexts:
     - match: \b(false|FALSE|NULL|true|TRUE)\b
       scope: constant.language.hlsl
 
-    - match: \b(sampler|sampler1D|sampler2D|sampler3D|SamplerComparisonState|samplerCUBE|sampler_state|SamplerState)\b
+    - match: \b(SamplerComparisonState|SamplerState)\b
       scope: storage.type.sampler.hlsl
 
-    - match: \b(Texture)\b
-      comment: Direct3D 9 Texture keyword
-      scope: keyword.sampler.texture.hlsl
-
-    - match: \b(AddressU|AddressV|AddressW|BorderColor|Filter|MaxAnisotropy|MaxLOD|MinLOD|MipLODBias)\b
-      scope: variable.other.sampler.state.hlsl
-
-    - match: \b(ComparisonFunc|ComparisonFilter)\b
-      scope: variable.other.sampler-comparison.state.hlsl
+    - match: \b(template|typename)\b
+      scope: keyword.declaration.template.hlsl
 
     - match: ({{valid_variable}})(::)
       captures:
