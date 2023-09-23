@@ -560,7 +560,7 @@ contexts:
 
 
   typename:
-    - match: \b(struct|class)\b
+    - match: \b(struct|class|enum)\b
       scope: storage.type.struct.hlsl
       set:
         - meta_scope: meta.struct.hlsl
