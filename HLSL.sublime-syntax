@@ -323,7 +323,7 @@ contexts:
     - match: \b(radians|rcp|reflect|refract|reversebits|round|rsqrt)\b
       scope: keyword.function.intrinsic.hlsl
 
-    - match: \b(saturate|sign|sin|sincos|sinh|smoothstep|sqrt|step)\b
+    - match: \b(saturate|sign|sin|sincos|sinh|smoothstep|sqrt|step|sizeof)\b
       scope: keyword.function.intrinsic.hlsl
 
     - match: \b(tan|tanh|transpose|trunc)\b
