@@ -20,7 +20,7 @@ scope: source.hlsl
 variables:
   valid_variable: '[A-Za-z_][A-Za-z_0-9]*'
   valid_numeric_attribute_param: (?:([1-9]\d*)|(?:{{valid_variable}}))
-  reusable_value_types: (?:bool|double|float|half|int|min10float|min16float|min12int|min16int|min16uint|uint)
+  reusable_value_types: (?:bool|double|float|half|int|min10float|min16float|min12int|min16int|min16uint|uint|float16_t|float32_t|float64_t|int16_t|int32_t|int64_t|uint16_t|uint32_t|uint64_t)
   scalar_types: \b(?:{{reusable_value_types}}|dword|void)\b
   vector_types: \b(?:{{reusable_value_types}}(?:[1-4]))\b
   matrix_types: \b(?:{{reusable_value_types}}(?:[1-4])(?:x)(?:[1-4])|(?:matrix))\b
@@ -76,7 +76,7 @@ contexts:
 
 
   main:
-    - match: (\bstruct\b)(?:\s+)({{valid_variable}})
+    - match: (\b(struct|class)\b)(?:\s+)({{valid_variable}})
       scope: meta.struct.hlsl
       captures:
         1: storage.type.struct.hlsl
@@ -564,7 +564,7 @@ contexts:
 
 
   typename:
-    - match: \bstruct\b
+    - match: \b(struct|class)\b
       scope: storage.type.struct.hlsl
       set:
         - meta_scope: meta.struct.hlsl
