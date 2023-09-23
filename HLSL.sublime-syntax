@@ -335,6 +335,11 @@ contexts:
     - match: \b(WaveActiveAllEqual|WaveActiveBitAnd|WaveActiveBitOr|WaveActiveBitXor|WaveActiveCountBits|WaveActiveMax|WaveActiveMin|WaveActiveProduct|WaveActiveSum|WaveActiveAllTrue|WaveActiveAnyTrue|WaveActiveBallot|WaveGetLaneCount|WaveGetLaneIndex|WaveIsFirstLane|WavePrefixCountBits|WavePrefixProduct|WavePrefixSum|WaveReadLaneFirst|WaveReadLaneAt)\b
       scope: keyword.function.intrinsic.hlsl
 
+    - match: \b(AcceptHitAndEndSearch|CallShader|IgnoreHit|PrimitiveIndex|ReportHit|TraceRay|DispatchRaysIndex|DispatchRaysDimensions|WorldRayOrigin|WorldRayDirection|RayTMin|RayTCurrent|RayFlags)\b
+      scope: keyword.function.intrinsic.hlsl
+
+    - match: \b(InstanceIndex|InstanceID|GeometryIndex|PrimitiveIndex|ObjectRayOrigin|ObjectRayDirection|ObjectToWorld3x4|ObjectToWorld4x3|WorldToObject3x4|WorldToObject4x3|HitKind)\b
+      scope: keyword.function.intrinsic.hlsl
 
   invalid:
     - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|operator|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
@@ -343,6 +348,9 @@ contexts:
 
   misc:
     - match: \b(false|FALSE|NULL|true|TRUE)\b
+      scope: constant.language.hlsl
+
+    - match: \b(RAY_FLAG_NONE|RAY_FLAG_FORCE_OPAQUE|RAY_FLAG_FORCE_NON_OPAQUE|RAY_FLAG_ACCEPT_FIRST_HIT_AND_END_SEARCHRAY_FLAG_SKIP_CLOSEST_HIT_SHADER|RAY_FLAG_CULL_BACK_FACING_TRIANGLES|RAY_FLAG_CULL_FRONT_FACING_TRIANGLES|RAY_FLAG_CULL_OPAQUE|RAY_FLAG_CULL_NON_OPAQUE|RAY_FLAG_SKIP_TRIANGLES|RAY_FLAG_SKIP_PROCEDURAL_PRIMITIVES)\b
       scope: constant.language.hlsl
 
     - match: \b(SamplerComparisonState|SamplerState)\b
