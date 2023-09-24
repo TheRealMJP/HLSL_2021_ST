@@ -348,6 +348,9 @@ contexts:
     - match: \b(dot4add_u8packed|dot4add_i8packed|dot2add)\b
       scope: keyword.function.intrinsic.hlsl
 
+    - match: \b(SetMeshOutputCounts|DispatchMesh)\b
+      scope: keyword.function.intrinsic.hlsl
+
   invalid:
     - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|operator|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
       scope: invalid.reserved.hlsl
@@ -400,12 +403,14 @@ contexts:
     - match: \b(in|out|inout)\b
       scope: variable.other.copy-modifier.hlsl
 
+    - match: \b(indices|vertices|primitives|payload)\b
+      scope: variable.other.mesh-modifier.hlsl
+
     - match: \b(centroid|column_major|const|extern|groupshared|inline|linear|nointerpolation|noperspective|precise|row_major|shared|static|uniform|volatile)\b
       scope: storage.modifier.hlsl
 
     - match: \b(snorm|unorm)\b
       scope: storage.type.float.modifier.hlsl
-
 
   namespace_body:
     - meta_content_scope: meta.namespace.hlsl
