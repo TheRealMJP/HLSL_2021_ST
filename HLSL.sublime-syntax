@@ -21,7 +21,7 @@ variables:
   valid_variable: '[A-Za-z_][A-Za-z_0-9]*'
   valid_numeric_attribute_param: (?:([1-9]\d*)|(?:{{valid_variable}}))
   reusable_value_types: (?:bool|double|float|half|int|min10float|min16float|min12int|min16int|min16uint|uint|float16_t|float32_t|float64_t|int16_t|int32_t|int64_t|uint16_t|uint32_t|uint64_t)
-  scalar_types: \b(?:{{reusable_value_types}}|dword|void)\b
+  scalar_types: \b(?:{{reusable_value_types}}|dword|void|uint8_t4_packed|int8_t4_packed)\b
   vector_types: \b(?:{{reusable_value_types}}(?:[1-4]))\b
   matrix_types: \b(?:{{reusable_value_types}}(?:[1-4])(?:x)(?:[1-4])|(?:matrix))\b
   texture_1d_types: (?:Texture1D(?:Array)?)
@@ -306,7 +306,7 @@ contexts:
     - match: \b(GetRenderTargetSampleCount|GetRenderTargetSamplePosition|GroupMemoryBarrier|GroupMemoryBarrierWithGroupSync)\b
       scope: keyword.function.intrinsic.hlsl
 
-    - match: \b(InterlockedAdd|InterlockedAnd|InterlockedCompareExchange|InterlockedCompareStore|InterlockedExchange|InterlockedMax|InterlockedMin|InterlockedOr|InterlockedXor|isfinite|isinf|isnan)\b
+    - match: \b(InterlockedAdd|InterlockedAnd|InterlockedCompareExchange|InterlockedCompareExchangeFloatBitwise|InterlockedCompareStore|InterlockedCompareStoreFloatBitwise|InterlockedExchange|InterlockedMax|InterlockedMin|InterlockedOr|InterlockedXor|isfinite|isinf|isnan)\b
       scope: keyword.function.intrinsic.hlsl
 
     - match: \b(ldexp|length|lerp|lit|log|log10|log2)\b
@@ -321,7 +321,7 @@ contexts:
     - match: \b(pow|printf|Process2DQuadTessFactorsAvg|Process2DQuadTessFactorsMax|Process2DQuadTessFactorsMin|ProcessIsolineTessFactors|ProcessQuadTessFactorsAvg|ProcessQuadTessFactorsMax|ProcessQuadTessFactorsMin|ProcessTriTessFactorsAvg|ProcessTriTessFactorsMax|ProcessTriTessFactorsMin)\b
       scope: keyword.function.intrinsic.hlsl
 
-    - match: \b(QuadReadAccrossDiagonal|QuadReadLaneAt|QuadReadAccrossX|QuadReadAccrossY)\b
+    - match: \b(QuadReadAccrossDiagonal|QuadReadLaneAt|QuadReadAccrossX|QuadReadAccrossY|IsHelperLane)\b
       scope: keyword.function.intrinsic.hlsl
 
     - match: \b(radians|rcp|reflect|refract|reversebits|round|rsqrt)\b
@@ -349,6 +349,15 @@ contexts:
       scope: keyword.function.intrinsic.hlsl
 
     - match: \b(SetMeshOutputCounts|DispatchMesh)\b
+      scope: keyword.function.intrinsic.hlsl
+
+    - match: \b(unpack_s8s16|unpack_u8u16|unpack_s8s32|unpack_u8u32|uint8_t4_packed pack_u8|uint8_t4_packed pack_u8|int8_t4_packed pack_s8|uint8_t4_packed pack_clamp_u8|int8_t4_packed pack_clamp_s8|uint8_t4_packed pack_clamp_u8|int8_t4_packed pack_clamp_s8)\b
+      scope: keyword.function.intrinsic.hlsl
+
+    - match: \b(ResourceDescriptorHeap|SamplerDescriptorHeap)\b
+      scope: keyword.function.intrinsic.hlsl
+
+    - match: \b(NonUniformResourceIndex)\b
       scope: keyword.function.intrinsic.hlsl
 
   invalid:
