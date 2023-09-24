@@ -341,6 +341,9 @@ contexts:
     - match: \b(InstanceIndex|InstanceID|GeometryIndex|PrimitiveIndex|ObjectRayOrigin|ObjectRayDirection|ObjectToWorld3x4|ObjectToWorld4x3|WorldToObject3x4|WorldToObject4x3|HitKind)\b
       scope: keyword.function.intrinsic.hlsl
 
+    - match: \b(dot4add_u8packed|dot4add_i8packed|dot2add)\b
+      scope: keyword.function.intrinsic.hlsl
+
   invalid:
     - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|operator|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
       scope: invalid.reserved.hlsl
