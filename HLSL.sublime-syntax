@@ -34,8 +34,9 @@ variables:
   texture_3d_rw_types: (?:(?:RW){{texture_3d_types}})
   texture_3d_rov_types: (?:(?:RasterizerOrdered){{texture_3d_types}})
   texture_cube_types: (?:TextureCube(?:Array)?)
+  texture_feedback_types: (?:(?:Feedback)Texture2D(?:Array)?)
   texture_types: \b(?:texture|{{texture_1d_types}}|{{texture_2d_types}}|{{texture_3d_types}}|{{texture_cube_types}})\b
-  texture_rw_types: \b(?:{{texture_1d_rw_types}}|{{texture_1d_rov_types}}|{{texture_2d_rw_types}}|{{texture_2d_rov_types}}|{{texture_3d_rw_types}}|{{texture_3d_rov_types}})\b
+  texture_rw_types: \b(?:{{texture_1d_rw_types}}|{{texture_1d_rov_types}}|{{texture_2d_rw_types}}|{{texture_2d_rov_types}}|{{texture_3d_rw_types}}|{{texture_3d_rov_types}}|{{texture_feedback_types}})\b
   buffer_types: \b(?:AppendStructuredBuffer|Buffer|ByteAddressBuffer|ConsumeStructuredBuffer|StructuredBuffer|RaytracingAccelerationStructure)\b
   buffer_rw_types: \b(?:RWBuffer|RWByteAddressBuffer|RWStructuredBuffer|RasterizerOrderedBuffer|RasterizerOrderedByteAddressBuffer|RasterizerOrderedStructuredBuffer)\b
 
@@ -354,6 +355,9 @@ contexts:
       scope: constant.language.hlsl
 
     - match: \b(RAY_FLAG_NONE|RAY_FLAG_FORCE_OPAQUE|RAY_FLAG_FORCE_NON_OPAQUE|RAY_FLAG_ACCEPT_FIRST_HIT_AND_END_SEARCHRAY_FLAG_SKIP_CLOSEST_HIT_SHADER|RAY_FLAG_CULL_BACK_FACING_TRIANGLES|RAY_FLAG_CULL_FRONT_FACING_TRIANGLES|RAY_FLAG_CULL_OPAQUE|RAY_FLAG_CULL_NON_OPAQUE|RAY_FLAG_SKIP_TRIANGLES|RAY_FLAG_SKIP_PROCEDURAL_PRIMITIVES)\b
+      scope: constant.language.hlsl
+
+    - match: \b(SAMPLER_FEEDBACK_MIN_MIP|SAMPLER_FEEDBACK_MIP_REGION_USED)\b
       scope: constant.language.hlsl
 
     - match: \b(SamplerComparisonState|SamplerState)\b
