@@ -28,7 +28,7 @@ variables:
   texture_1d_rw_types: (?:(?:RW){{texture_1d_types}})
   texture_1d_rov_types: (?:(?:RasterizerOrdered){{texture_1d_types}})
   texture_2d_types: (?:Texture2D(?:Array)?|Texture2D(?:MS)?(?:Array)?)
-  texture_2d_rw_types: (?:(?:RW)Texture2D(?:Array)?)
+  texture_2d_rw_types: (?:(?:RW)Texture2D(?:MS)?(?:Array)?)
   texture_2d_rov_types: (?:(?:RasterizerOrdered)Texture2D(?:Array)?)
   texture_3d_types: (?:Texture3D)
   texture_3d_rw_types: (?:(?:RW){{texture_3d_types}})
@@ -113,7 +113,7 @@ contexts:
 
 
   attributes:
-    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll|raypayload)\]
+    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll|raypayload|WaveOpsIncludeHelperLanes)\]
       scope: keyword.control.attribute.hlsl
 
     - match: (\[(?:unroll|instance|maxtessfactor|outputcontrolpoints|WaveSize))\(\s*{{valid_numeric_attribute_param}}\s*\)(\])
@@ -321,7 +321,7 @@ contexts:
     - match: \b(pow|printf|Process2DQuadTessFactorsAvg|Process2DQuadTessFactorsMax|Process2DQuadTessFactorsMin|ProcessIsolineTessFactors|ProcessQuadTessFactorsAvg|ProcessQuadTessFactorsMax|ProcessQuadTessFactorsMin|ProcessTriTessFactorsAvg|ProcessTriTessFactorsMax|ProcessTriTessFactorsMin)\b
       scope: keyword.function.intrinsic.hlsl
 
-    - match: \b(QuadReadAccrossDiagonal|QuadReadLaneAt|QuadReadAccrossX|QuadReadAccrossY|IsHelperLane)\b
+    - match: \b(QuadReadAccrossDiagonal|QuadReadLaneAt|QuadReadAccrossX|QuadReadAccrossY|IsHelperLane|QuadAny|QuadAll)\b
       scope: keyword.function.intrinsic.hlsl
 
     - match: \b(radians|rcp|reflect|refract|reversebits|round|rsqrt)\b
