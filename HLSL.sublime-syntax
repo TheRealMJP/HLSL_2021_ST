@@ -113,7 +113,7 @@ contexts:
 
 
   attributes:
-    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll)\]
+    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll|raypayload)\]
       scope: keyword.control.attribute.hlsl
 
     - match: (\[(?:unroll|instance|maxtessfactor|outputcontrolpoints|WaveSize))\(\s*{{valid_numeric_attribute_param}}\s*\)(\])
