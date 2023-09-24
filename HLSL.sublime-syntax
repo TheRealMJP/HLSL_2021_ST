@@ -336,6 +336,9 @@ contexts:
     - match: \b(WaveActiveAllEqual|WaveActiveBitAnd|WaveActiveBitOr|WaveActiveBitXor|WaveActiveCountBits|WaveActiveMax|WaveActiveMin|WaveActiveProduct|WaveActiveSum|WaveActiveAllTrue|WaveActiveAnyTrue|WaveActiveBallot|WaveGetLaneCount|WaveGetLaneIndex|WaveIsFirstLane|WavePrefixCountBits|WavePrefixProduct|WavePrefixSum|WaveReadLaneFirst|WaveReadLaneAt)\b
       scope: keyword.function.intrinsic.hlsl
 
+    - match: \b(WaveMatch|WaveMultiPrefixSum|WaveMultiPrefixProduct|WaveMultiPrefixCountBits|WaveMultiPrefixAnd|WaveMultiPrefixOr|WaveMultiPrefixXor)\b
+      scope: keyword.function.intrinsic.hlsl
+
     - match: \b(AcceptHitAndEndSearch|CallShader|IgnoreHit|PrimitiveIndex|ReportHit|TraceRay|DispatchRaysIndex|DispatchRaysDimensions|WorldRayOrigin|WorldRayDirection|RayTMin|RayTCurrent|RayFlags)\b
       scope: keyword.function.intrinsic.hlsl
 
