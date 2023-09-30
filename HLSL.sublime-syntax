@@ -388,6 +388,21 @@ contexts:
     - match: \b(template|typename)\b
       scope: keyword.declaration.template.hlsl
 
+    - match: \b(SV_Coverage|SV_Depth|SV_DepthGreaterEqual|SV_DepthLessEqual|SV_DispatchThreadID|SV_DomainLocation|SV_GroupID|SV_GroupIndex|SV_GroupThreadID|SV_GSInstanceID|SV_InnerCoverage|SV_InsideTessFactor|SV_InstanceID|SV_IsFrontFace|SV_OutputControlPointID|SV_Position|SV_PrimitiveID|SV_RenderTargetArrayIndex)\b
+      scope: keyword.control.attribute.hlsl
+
+    - match: \b(SV_SampleIndex|SV_StencilRef|SV_TessFactor|SV_VertexID|SV_ViewportArrayIndex|SV_ShadingRate|SV_ViewID|SV_Barycentrics|SV_CullPrimitive)\b
+      scope: keyword.control.attribute.hlsl
+
+    - match: \b(SV_ClipDistance0|SV_ClipDistance1|SV_ClipDistance2|SV_ClipDistance3|SV_ClipDistance4|SV_ClipDistance5|SV_ClipDistance6|SV_ClipDistance7)\b
+      scope: keyword.control.attribute.hlsl
+
+    - match: \b(SV_CullDistance0|SV_CullDistance1|SV_CullDistance2|SV_CullDistance3|SV_CullDistance4|SV_CullDistance5|SV_CullDistance6|SV_CullDistance7)\b
+      scope: keyword.control.attribute.hlsl
+
+    - match: \b(SV_Target0|SV_Target1|SV_Target2|SV_Target3|SV_Target4|SV_Target5|SV_Target6|SV_Target7)\b
+      scope: keyword.control.attribute.hlsl
+
     - match: ({{valid_variable}})(::)
       captures:
         1: entity.name.scope.hlsl
