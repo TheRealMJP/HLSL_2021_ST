@@ -19,7 +19,7 @@ scope: source.hlsl
 
 variables:
   valid_variable: '[A-Za-z_][A-Za-z_0-9]*'
-  valid_numeric_attribute_param: (?:([1-9]\d*)|(?:{{valid_variable}}))
+  valid_numeric_attribute_param: (?:([0-9]\d*)|(?:{{valid_variable}}))
   reusable_value_types: (?:bool|double|float|half|int|min10float|min16float|min12int|min16int|min16uint|uint|float16_t|float32_t|float64_t|int16_t|int32_t|int64_t|uint16_t|uint32_t|uint64_t)
   scalar_types: \b(?:{{reusable_value_types}}|dword|void|uint8_t4_packed|int8_t4_packed)\b
   vector_types: \b(?:{{reusable_value_types}}(?:[1-4]))\b
@@ -113,16 +113,16 @@ contexts:
 
 
   attributes:
-    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll|raypayload|WaveOpsIncludeHelperLanes)\]
+    - match: \[(allow_uav_condition|branch|call|earlydepthstencil|fastopt|flatten|forcecase|loop|unroll|raypayload|WaveOpsIncludeHelperLanes|NodeIsProgramEntry|NoInline|NodeTrackRWInputSharing|AllowSparseNodes|UnboundedSparseNodes)\]
       scope: keyword.control.attribute.hlsl
 
-    - match: (\[(?:unroll|instance|maxtessfactor|outputcontrolpoints|WaveSize))\(\s*{{valid_numeric_attribute_param}}\s*\)(\])
+    - match: (\[(?:unroll|instance|maxtessfactor|outputcontrolpoints|WaveSize|NodeLocalRootArgumentsTableIndex|NodeMaxRecursionDepth|MaxRecords|NodeArraySize))\(\s*{{valid_numeric_attribute_param}}\s*\)(\])
       captures:
         1: keyword.control.attribute.hlsl
         2: constant.numeric.hlsl
         3: keyword.control.attribute.hlsl
 
-    - match: (\[numthreads)\(\s*{{valid_numeric_attribute_param}}\s*,\s*{{valid_numeric_attribute_param}}\s*,\s*{{valid_numeric_attribute_param}}\s*\)(\])
+    - match: (\[(?:numthreads|NumThreads|NodeMaxDispatchGrid|NodeDispatchGrid))\(\s*{{valid_numeric_attribute_param}}\s*,\s*{{valid_numeric_attribute_param}}\s*,\s*{{valid_numeric_attribute_param}}\s*\)(\])
       captures:
         1: keyword.control.attribute.hlsl
         2: constant.numeric.hlsl
@@ -157,13 +157,55 @@ contexts:
         2: string.quoted.double.hlsl
         3: keyword.control.attribute.hlsl
 
-    - match: (\[shader)\(\s*("(?:closesthit|anyhit|miss|intersection|callable)")\s*\)(\])
+    - match: (\[MaxRecordsSharedWith)\(\s*{{valid_variable}}\s*\)(\])
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: constant.numeric.hlsl
+        3: keyword.control.attribute.hlsl
+
+    - match: (\[(?:shader|Shader))\(\s*("(?:closesthit|anyhit|miss|intersection|callable|node|pixel|vertex|hull|domain|geometry|compute|mesh|amplification)")\s*\)(\])
       scope: meta.attribute.shader.hlsl
       captures:
         1: keyword.control.attribute.hlsl
         2: string.quoted.double.hlsl
         3: keyword.control.attribute.hlsl
 
+    - match: (\[NodeLaunch)\(\s*("(?:broadcasting|coalescing|thread)")\s*\)(\])
+      scope: meta.attribute.nodelaunch.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: keyword.control.attribute.hlsl
+
+    - match: (\[NodeID)\(\s*("{{valid_variable}}")\s*\)(\])
+      scope: meta.attribute.NodeID.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: keyword.control.attribute.hlsl
+
+    - match: (\[NodeID)\(\s*("{{valid_variable}}")\s*,\s*{{valid_numeric_attribute_param}}\s*\)(\])
+      scope: meta.attribute.NodeID.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: constant.numeric.hlsl
+        4: keyword.control.attribute.hlsl
+
+    - match: (\[NodeShareInputOf)\(\s*("{{valid_variable}}")\s*\)(\])
+      scope: meta.attribute.NodeShareInputOf.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: keyword.control.attribute.hlsl
+
+    - match: (\[NodeShareInputOf)\(\s*("{{valid_variable}}")\s*,\s*{{valid_numeric_attribute_param}}\s*\)(\])
+      scope: meta.attribute.NodeShareInputOf.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: constant.numeric.hlsl
+        4: keyword.control.attribute.hlsl
 
   built_in_types:
     - match: '{{scalar_types}}'
@@ -367,6 +409,9 @@ contexts:
     - match: \b(NonUniformResourceIndex)\b
       scope: keyword.function.intrinsic.hlsl
 
+    - match: \b(GetRemainingRecursionLevels)\b
+      scope: keyword.function.intrinsic.hlsl
+
   invalid:
     - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|operator|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
       scope: invalid.reserved.hlsl
@@ -380,6 +425,9 @@ contexts:
       scope: constant.language.hlsl
 
     - match: \b(SAMPLER_FEEDBACK_MIN_MIP|SAMPLER_FEEDBACK_MIP_REGION_USED)\b
+      scope: constant.language.hlsl
+
+    - match: \b(UAV_MEMORY|GROUP_SHARED_MEMORY|NODE_INPUT_MEMORY|NODE_OUTPUT_MEMORY|ALL_MEMORY|GROUP_SYNC|GROUP_SCOPE|DEVICE_SCOPE)\b
       scope: constant.language.hlsl
 
     - match: \b(SamplerComparisonState|SamplerState)\b
