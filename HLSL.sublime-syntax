@@ -157,6 +157,13 @@ contexts:
         2: string.quoted.double.hlsl
         3: keyword.control.attribute.hlsl
 
+    - match: (\[shader)\(\s*("(?:closesthit|anyhit|miss|intersection|callable)")\s*\)(\])
+      scope: meta.attribute.shader.hlsl
+      captures:
+        1: keyword.control.attribute.hlsl
+        2: string.quoted.double.hlsl
+        3: keyword.control.attribute.hlsl
+
 
   built_in_types:
     - match: '{{scalar_types}}'
