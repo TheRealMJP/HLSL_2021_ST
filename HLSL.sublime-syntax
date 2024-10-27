@@ -413,7 +413,7 @@ contexts:
       scope: keyword.function.intrinsic.hlsl
 
   invalid:
-    - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|operator|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
+    - match: \b(auto|catch|char|const_cast|delete|dynamic_cast|explicit|friend|goto|long|mutable|new|private|protected|public|reinterpret_cast|short|signed|static_cast|this|throw|try|union|using|virtual)\b
       scope: invalid.reserved.hlsl
 
 
@@ -429,6 +429,9 @@ contexts:
 
     - match: \b(UAV_MEMORY|GROUP_SHARED_MEMORY|NODE_INPUT_MEMORY|NODE_OUTPUT_MEMORY|ALL_MEMORY|GROUP_SYNC|GROUP_SCOPE|DEVICE_SCOPE)\b
       scope: constant.language.hlsl
+
+    - match: \b(operator)\b
+      scope: variable.function.hlsl
 
     - match: \b(SamplerComparisonState|SamplerState)\b
       scope: storage.type.sampler.hlsl
